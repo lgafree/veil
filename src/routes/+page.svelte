@@ -19,6 +19,7 @@
 	let showToast = false;
 	let waveSurfer;
 	let isPlaying = false;
+	let noVMMessage = 'Create your username and share your Veil link to your friends.';
 
 	onMount(() => {
 		auth.onAuthStateChanged(async (user) => {
@@ -35,13 +36,15 @@
 
 			if (docSnap.exists()) {
 				username = docSnap.data().username;
+				noVMMessage = 'Share your Veil link to receive anonymous voice messages.';
+
+				const messagesRef = collection(docRef, 'messages');
+				const messagesSnap = await getDocs(messagesRef);
+				messagesSnap.forEach((doc) => {
+					vms.push(doc.data());
+					vms = vms;
+				});
 			}
-			const messagesRef = collection(docRef, 'messages');
-			const messagesSnap = await getDocs(messagesRef);
-			messagesSnap.forEach((doc) => {
-				vms.push(doc.data());
-				vms = vms;
-			});
 		});
 	});
 
@@ -134,13 +137,13 @@
 	<div class="grid grid-cols-6 gap-4 px-5">
 		{#each vms as vm}
 			<Dialog.Root>
-				<Dialog.Trigger
-					><Card class="lg:col-span-1 col-span-2 w-auto h-24 lg:h-36" on:click={selectVM(vm.vmURL)}>
+				<Dialog.Trigger class="lg:col-span-1 col-span-2">
+					<Card class="h-24 lg:h-36" on:click={selectVM(vm.vmURL)}>
 						<CardContent class="flex h-full items-end lg:items-center">
 							<Icon class="text-primary text-5xl mx-auto " icon="emojione:mouth" />
 						</CardContent>
-					</Card></Dialog.Trigger
-				>
+					</Card>
+				</Dialog.Trigger>
 				<Dialog.Content>
 					<!-- <Dialog.Header>
 						<Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
@@ -169,9 +172,7 @@
 			</Dialog.Root>
 		{/each}
 		{#if vms.length === 0}
-			<span class="col-span-6 mx-auto text-2xl text-primary align-middle"
-				>Share your Veil link to receive anonymous voice messages.</span
-			>
+			<span class="col-span-6 mx-auto text-2xl text-primary align-middle">{noVMMessage}</span>
 		{/if}
 	</div>
 	{#if showToast}

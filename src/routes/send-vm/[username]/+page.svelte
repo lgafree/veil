@@ -89,8 +89,6 @@
 		document.getElementById('send-vm-button').setAttribute('disabled', true);
 		sendButtonIcon = 'eos-icons:three-dots-loading';
 		uploadBytes(storageRef, audioBlob).then((snapshot) => {
-			document.getElementById('send-vm-button').setAttribute('disabled', false);
-			sendButtonIcon = 'mingcute:send-fill';
 			getDownloadURL(snapshot.ref).then(async (vmURL) => {
 				const userQuery = query(
 					collection(db, 'users'),
@@ -101,6 +99,11 @@
 					await addDoc(collection(doc.ref, 'messages'), {
 						vmURL: vmURL
 					});
+
+					document.getElementById('send-vm-button').removeAttribute('disabled');
+					sendButtonIcon = 'mingcute:send-fill';
+					deleteRecording();
+					alert('VM sent');
 				});
 			});
 		});
