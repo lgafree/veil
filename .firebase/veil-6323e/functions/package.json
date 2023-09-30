@@ -1,0 +1,24 @@
+{
+  "name": "veil",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "bits-ui": "^0.5.7",
+    "clsx": "^2.0.0",
+    "firebase": "^10.4.0",
+    "radix-icons-svelte": "^1.2.1",
+    "tailwind-merge": "^1.14.0",
+    "tailwind-variants": "^0.1.14",
+    "uuid": "^9.0.1",
+    "wavesurfer.js": "^7.3.2",
+    "@sveltejs/kit": "^1.20.4",
+    "firebase-frameworks": "^0.10.4",
+    "firebase-functions": "^4.3.0",
+    "firebase-admin": "^11.0.1"
+  },
+  "main": "server.js",
+  "engines": {
+    "node": "18"
+  }
+}
