@@ -72,6 +72,7 @@
 						displayName: displayName
 					});
 					username = usernameInput;
+					noVMMessage = 'Share your Veil link to receive anonymous voice messages.';
 				} catch (error) {
 					console.error('Error setting username:', error);
 				}
