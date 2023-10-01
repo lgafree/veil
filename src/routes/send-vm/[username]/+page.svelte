@@ -173,7 +173,7 @@
 	<div class="flex flex-col place-content mt-10">
 		<div class="row text-center">
 			<span class="h-32 p-5 mx-auto text-2xl text-primary align-middle"
-				>ATM, this app is only supported in the browser. If you're in an app, please copy the link
+				>ATM, microphone is only supported in the browser. If you're in an app, please copy the link
 				and paste it in your browser. (e.g, Chrome)</span
 			>
 		</div>
