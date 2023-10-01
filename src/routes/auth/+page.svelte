@@ -39,7 +39,7 @@
 			>ATM, log in is only supported in the browser. If you're in an app, please copy the link and
 			paste it in your browser. (e.g, Chrome)</span
 		>
-		<span class="h-32 mx-auto mt-5 text-xl text-blue-500 align-middle"
+		<span class="h-32 mx-auto mt-10 text-xl text-blue-500 align-middle"
 			>https://veil-ruddy.vercel.app/auth</span
 		>
 		<!-- <Button variant="outline" size="sm" class="text-primary" on:click={copyToClipboard}
