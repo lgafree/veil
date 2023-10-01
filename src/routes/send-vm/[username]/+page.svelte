@@ -111,10 +111,6 @@
 </script>
 
 <main>
-	<span class="h-32 p-5 mx-auto text-2xl text-primary align-middle"
-		>ATM, this app is only supported in the browser. If you're in an app, please copy the link and
-		paste it in your browser. (e.g, Chrome)</span
-	>
 	<div id="waveform" class="grid h-auto p-2 m-5 rounded-sm border-2 border-primary-500">
 		{#if duration === 0 && isRecording === false}
 			<span class="h-32 mx-auto text-2xl text-primary align-middle">Say something.</span>
@@ -173,5 +169,18 @@
 				>
 			{/if}
 		{/if}
+	</div>
+	<div class="flex flex-col place-content mt-10">
+		<div class="row text-center">
+			<span class="h-32 p-5 mx-auto text-2xl text-primary align-middle"
+				>ATM, this app is only supported in the browser. If you're in an app, please copy the link
+				and paste it in your browser. (e.g, Chrome)</span
+			>
+		</div>
+		<div class="row text-center">
+			<span class="h-32 mx-auto text-xl text-blue-500 align-middle"
+				>https://veil-ruddy.vercel.app/send-vm/{$page.params.username}</span
+			>
+		</div>
 	</div>
 </main>
