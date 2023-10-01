@@ -34,14 +34,17 @@
 </script>
 
 <main class="h-screen grid place-content-center mx-5">
-	<div>
+	<div class="flex flex-col">
 		<span class="h-32 mx-auto text-2xl text-primary align-middle"
 			>ATM, log in is only supported in the browser. If you're in an app, please copy the link and
 			paste it in your browser. (e.g, Chrome)</span
 		>
-		<Button variant="outline" size="sm" class="text-primary" on:click={copyToClipboard}
-			>Copy link</Button
+		<span class="h-32 mx-auto text-xl text-blue-500 align-middle"
+			>https://veil-ruddy.vercel.app/auth</span
 		>
+		<!-- <Button variant="outline" size="sm" class="text-primary" on:click={copyToClipboard}
+			>Copy link</Button
+		> -->
 	</div>
 
 	<div class="width-full items-center mt-5">
