@@ -8,6 +8,10 @@
 	import { auth, db } from '$lib/firebase/firebaseConfig.js';
 	import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 	import WaveSurfer from 'wavesurfer.js';
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
+
+	inject({ mode: dev ? 'development' : 'production' });
 
 	let vms = [];
 	let uid;
