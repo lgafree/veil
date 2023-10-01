@@ -24,7 +24,7 @@
 	}
 
 	function copyToClipboard() {
-		navigator.clipboard.writeText(window.location.href);
+		navigator.clipboard.writeText('https://veil-ruddy.vercel.app/auth');
 		showToast = true;
 
 		setTimeout(() => {
