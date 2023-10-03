@@ -23,6 +23,7 @@
 	let showToast = false;
 	let waveSurfer;
 	let isPlaying = false;
+	let playerLoading = false;
 	let noVMMessage = 'Create your username and share your Veil link to your friends.';
 
 	onMount(() => {
@@ -76,7 +77,7 @@
 						displayName: displayName
 					});
 					username = usernameInput;
-					noVMMessage = 'Share your Veil link to receive anonymous voice messages.';
+					noVMMessage = 'Share your Veil link to receive anonymous voice messages listed here.';
 				} catch (error) {
 					console.error('Error setting username:', error);
 				}
@@ -95,12 +96,17 @@
 
 	function selectVM(vm) {
 		isPlaying = false;
+		playerLoading = true;
 		setTimeout(() => {
 			waveSurfer = WaveSurfer.create({
 				container: '#waveform',
 				waveColor: 'rgb(225 29 72)',
 				progressColor: 'rgb(216 91 118)',
 				url: vm
+			});
+
+			waveSurfer.on('loading', (percent) => {
+				playerLoading = percent === 100 ? false : true;
 			});
 		}, 500);
 	}
@@ -158,20 +164,22 @@
 						</Dialog.Description>
 					</Dialog.Header> -->
 					<div id="waveform" class="grid h-auto p-2 m-3 rounded-sm border-2 border-primary-500" />
-					{#if !isPlaying}
-						<Button
-							variant="outline"
-							class="border-primary h-auto w-24 mx-auto rounded-full"
-							on:click={playRecording}
-							><Icon class="text-5xl text-primary" icon="mingcute:play-fill" /></Button
-						>
-					{:else}
-						<Button
-							variant="outline"
-							class="border-primary h-auto w-24 mx-auto rounded-full"
-							on:click={pauseRecording}
-							><Icon class="text-5xl text-primary" icon="carbon:pause-filled" /></Button
-						>
+					{#if !playerLoading}
+						{#if !isPlaying}
+							<Button
+								variant="outline"
+								class="border-primary h-auto w-24 mx-auto rounded-full"
+								on:click={playRecording}
+								><Icon class="text-5xl text-primary" icon="mingcute:play-fill" /></Button
+							>
+						{:else}
+							<Button
+								variant="outline"
+								class="border-primary h-auto w-24 mx-auto rounded-full"
+								on:click={pauseRecording}
+								><Icon class="text-5xl text-primary" icon="carbon:pause-filled" /></Button
+							>
+						{/if}
 					{/if}
 				</Dialog.Content>
 			</Dialog.Root>
