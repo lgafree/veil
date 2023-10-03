@@ -105,8 +105,8 @@
 				url: vm
 			});
 
-			waveSurfer.on('loading', (percent) => {
-				playerLoading = percent === 100 ? false : true;
+			waveSurfer.on('ready', (percent) => {
+				playerLoading = false;
 			});
 		}, 500);
 	}
