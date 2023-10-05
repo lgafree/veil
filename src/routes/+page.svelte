@@ -58,7 +58,12 @@
 		if (usernameInput === undefined) {
 			errorMessage = 'Please enter username';
 			document.getElementById('username-error').removeAttribute('hidden');
-		} else {
+		} 
+		else if (/[^A-Za-z0-9_@.]/.test(usernameInput)) {
+			errorMessage = 'Username contains invalid characters';
+			document.getElementById('username-error').removeAttribute('hidden');
+		}
+		else {
 			const usernameRef = collection(db, 'users');
 			const usernameQuery = query(usernameRef, where('username', '==', usernameInput));
 			const usernameQuerySnapshot = await getDocs(usernameQuery);
@@ -72,7 +77,7 @@
 				});
 				try {
 					await setDoc(doc(db, 'users', uid), {
-						username: usernameInput,
+						username: usernameInput.replace(/[^A-Za-z0-9_@.]/g, ''), //sanitize username to exclude special characters and whitespaces
 						email: email,
 						displayName: displayName
 					});
